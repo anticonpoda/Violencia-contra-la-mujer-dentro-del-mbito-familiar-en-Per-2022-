@@ -21,7 +21,7 @@ garantizar la privacidad de la entrevista.
 
 ## Variable dependiente: caso de violencia contra la mujer
 
-Esta variable se encuentra distribuida en el Módulo 1637 que está
+Esta variable se encuentra distribuida en el Módulo 1637 (REC84DV) que está
 orientada a la maternidad y violencia familiar. Esta variable analiza la
 presencia y tipos de violencia experimentados por mujeres en el ámbito
 familiar. Incluye las siguientes subvariables:
@@ -51,7 +51,7 @@ Las variables dependientes en este estudio son dicotómicas, lo que significa qu
 
 ## Variables independientes:
 
-Se encuentran en el Modulo 1631 de Mortalidad, Embarazo y Familia. De
+Se encuentran en el Modulo 1631(REC0111 y REC91) de Mortalidad, Embarazo y Familia. De
 esta data se van a recopilar datos básicos que se usarán como variables
 predictoras de la violencia contra la mujer. Incluye las siguientes
 variables:
@@ -158,21 +158,8 @@ Más adelante, esta variable será recodificada en una variable dicotómica, don
 
 Posteriormente, para simplificar el análisis y agrupar los datos, esta variable será recodificada en una variable dicotómica donde 1 sera igual a aquellas mujeres cuya lengua materna sea el español, y 0 a aquellas que tengan otra lengua materna distinta al español.
 
--   S718N: Ingresos de la entrevistada utilizada para gas   tos familiares 
 
-    -   1= Casi nada
-
-    -   2= Menos de la mitad
-
-    -   3= Mitad
-
-    -   4= Mas de la mitad
-
-    -   5= Todos los ingresos
-
-    -   6=Nada, ahorra todo el ingreso???
-
-Estos datos se utilizarán para analizar y predecir la violencia contra la mujer, considerando factores como la ubicación geográfica, nivel educativo, composición del hogar, relación familiar, sexo y edad del jefe del hogar, así como el índice de riqueza del hogar.
+Todos estos datos se utilizarán para analizar y predecir la violencia contra la mujer, considerando factores como la ubicación geográfica, nivel educativo, composición del hogar, así como el índice de riqueza del hogar.
 
 ## Variable de control
 
@@ -204,7 +191,9 @@ Estos datos se utilizarán para analizar y predecir la violencia contra la mujer
 
     -   12= Otra lengua extranjera
 
--   variable dependiente
+
+
+Variable dependiente
 
 ```{r}
 datosdep <- read.csv("REC84DVD.csv", sep = ";")
@@ -229,7 +218,7 @@ datosind1 <- read.csv("REC91.csv", sep = ";")
 ```
 
 ```{r}
-varind1 <- subset(datosind1, select = c("S119", "S718", "CASEID"))
+varind1 <- subset(datosind1, select = c("S119", "CASEID"))
 ```
 
 ```{r}
