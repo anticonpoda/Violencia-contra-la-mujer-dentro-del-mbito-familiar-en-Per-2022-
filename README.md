@@ -1,5 +1,5 @@
 ---
-title: "Trabajo"
+title: "Diccionario y tablas de datos ENDES 2022"
 output: html_document
 date: "2024-05-11"
 editor_options: 
