@@ -47,6 +47,8 @@ familiar. Incluye las siguientes subvariables:
     -   1 = Sí experimentó algún resultado adverso causado por el
         esposo/compañero
 
+Las variables dependientes en este estudio son dicotómicas, lo que significa que cada una de ellas tiene dos posibles valores: si y no. Posteriormente, estas variables serán combinadas en una única variable general dicotómica que representará la presencia o ausencia de cualquier tipo de violencia contra la mujer. 
+
 ## Variables independientes:
 
 Se encuentran en el Modulo 1631 de Mortalidad, Embarazo y Familia. De
@@ -120,6 +122,8 @@ variables:
 
     -   4 = Ciega / problemas visuales 
 
+Más adelante, esta variable será recodificada en una variable dicotómica, donde se agruparán los niveles 0, 1 y 3 como 'analfabeta', esto tendrá un valor igual a 1,  mientras que los niveles 2 y 4 se agruparán como 'no analfabeta' que tendrá el valor de 0. Esta recodificación simplificará el análisis. 
+
 -   S119: Lengua materna
 
     Numérica: Indica la leguna materna de la entrevistada
@@ -152,7 +156,9 @@ variables:
 
     -   98 = No sabe
 
--   S718N: Ingresos de la entrevistada utilizada para gastos familiares 
+Posteriormente, para simplificar el análisis y agrupar los datos, esta variable será recodificada en una variable dicotómica donde 1 sera igual a aquellas mujeres cuya lengua materna sea el español, y 0 a aquellas que tengan otra lengua materna distinta al español.
+
+-   S718N: Ingresos de la entrevistada utilizada para gas   tos familiares 
 
     -   1= Casi nada
 
