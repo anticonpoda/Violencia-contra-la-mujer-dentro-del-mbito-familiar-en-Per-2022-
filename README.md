@@ -1,5 +1,5 @@
 ---
-title: "Diccionario y tablas de datos ENDES 2022"
+title: "Trabajo"
 output: html_document
 date: "2024-05-11"
 editor_options: 
@@ -9,17 +9,12 @@ editor_options:
 
 # Diccionario de datos
 
-Para el trabajo estadístico se usará la data completa de Encuesta
-Demográfica y de Salud Familiar (ENDES) 2022 ejecutada por el Instituto
-Nacional de Estadística e Informática. Link de reporte en Base de Datos
-Abiertos:
+Para el trabajo estadístico se usará la data completa de Encuesta Demográfica y de Salud Familiar (ENDES) 2022 ejecutada por el Instituto Nacional de Estadística e Informática. Link de reporte en Base de Datos Abiertos:
 <https://www.datosabiertos.gob.pe/dataset/encuesta-demogr%C3%A1fica-y-de-salud-familiar-endes-2022-instituto-nacional-de-estad%C3%ADstica-e-1>
-Es pertinente señalar que las personas entrevistadas han pasado por un
-proceso de selección y se dieron casos donde la persona seleccionada no
-pudo ser entrevistada porque no existían las condiciones necesarias para
+Es pertinente señalar que las personas entrevistadas han pasado por un proceso de selección y se dieron casos donde la persona seleccionada no pudo ser entrevistada porque no existían las condiciones necesarias para
 garantizar la privacidad de la entrevista.
 
-## Variable dependiente: caso de violencia contra la mujer
+## Variable dependiente: caso de violencia contra la mujer dentro del ámbito familiar
 
 Esta variable se encuentra distribuida en el Módulo 1637 (REC84DV) que está orientada a la maternidad y violencia familiar. Esta variable analiza la presencia y tipos de violencia experimentados por mujeres en el ámbito familiar. Incluye las siguientes subvariables:
 
@@ -35,11 +30,23 @@ Esta variable se encuentra distribuida en el Módulo 1637 (REC84DV) que está or
 
     -   1 = Sí experimentó violencia sexual
 
-Las variables dependientes en este estudio son dicotómicas, lo que significa que cada una de ellas tiene dos posibles valores: si y no. Posteriormente, estas variables serán combinadas en una única variable general dicotómica que representará la presencia o ausencia de cualquier tipo de violencia contra la mujer. 
+-   D111: Cualquier resultado adverso de violencia causado por el
+    esposo/compañero
+
+    -   0 = No experimentó ningún resultado adverso causado por el
+        esposo/compañero
+
+    -   1 = Sí experimentó algún resultado adverso causado por el
+        esposo/compañero
+
+Las variables dependientes en este estudio son dicotómicas, lo que significa que cada una de ellas tiene dos posibles valores: sí y no. Posteriormente, estas variables serán combinadas en una única variable general dicotómica que representará la presencia o ausencia de cualquier tipo de violencia contra la mujer. 
 
 ## Variables independientes:
 
-Se encuentran en el Modulo 1631(REC0111 y REC91) de Mortalidad, Embarazo y Familia. De esta data se van a recopilar datos básicos que se usarán como variables predictoras de la violencia contra la mujer. Incluye las siguientes variables:
+Se encuentran en el Modulo 1631(REC0111 y REC91) de Mortalidad, Embarazo y Familia. De
+esta data se van a recopilar datos básicos que se usarán como variables
+predictoras de la violencia contra la mujer. Incluye las siguientes
+variables:
 
 -   V012: Edad
 
@@ -176,7 +183,7 @@ Todos estos datos se utilizarán para analizar y predecir la violencia contra la
 
     -   12= Otra lengua extranjera
 
-En los modelos de regresión, la varible sera configurada como dicótomica siendo "1" castellano y 0 "grupo nativo"
+
 
 Variable dependiente
 
