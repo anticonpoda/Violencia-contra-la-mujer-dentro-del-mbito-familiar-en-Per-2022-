@@ -158,6 +158,8 @@ Todos estos datos se utilizarán para analizar y predecir la violencia contra la
 
 Existe una amplia literatura que sustenta el gran impacto de la etnicidad dentro de los casos de violencia contra la mujer. Por lo tanto, resulta adecuado utilizarla como variable de control en aras de poder apreciar en mayor medida el efecto de otras variables sobre los casos de violencia contra la mujer en el ámbito familiar.
 
+Informe elaborado por el Banco Interamericano de desarrollo sobre la violencia contra la mujer entre diferentes grupos étnicos: https://observatorioviolencia.regionlalibertad.gob.pe/wp-content/uploads/2021/04/Prevalencia-de-la-violencia-contra-la-mujer-entre-diferentes-grupos-etnicos-en-Peru.pdf
+
 -   V131: Etnicidad
 
     Carácter: Indica el grupo étnico al que pertenece la mujer.
