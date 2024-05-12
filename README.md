@@ -87,15 +87,6 @@ Se encuentran en el Modulo 1631(REC0111 y REC91) de Mortalidad, Embarazo y Famil
     -   4 = Secundaria completa
 
     -   5 = Superior
- 
--   S718: Ingresos de la entrevistada utilizada para gastos familiares
-    Numérica: Indica el aporte económico de la mujer a los gastos familiares.
-    -   1 = Casi nada
-    -   2 = Menos de la mitad
-    -   3 = Mitad
-    -   4 = Más de la mitad
-    -   5 = Todos los ingresos
-    -   6 = Nada, ahorra todo el ingreso
 
 -   V190: Índice de riqueza
 
@@ -164,6 +155,8 @@ Posteriormente, para simplificar el análisis y agrupar los datos, esta variable
 Todos estos datos se utilizarán para analizar y predecir la violencia contra la mujer en el ámbito familiar, considerando factores como la ubicación geográfica, nivel educativo, composición del hogar, así como el índice de riqueza del hogar.
 
 ## Variable de control
+
+En una nota técnica elaborada por el Banco Interamericano de Desarrollo a partir de los datos recogidos en las Encuesta Demográfica y de Salud Familiar se concluye que las mujeres hablan castellano luego de un proceso de aprendizaje y que hablaban quechua o aymara en su infancia son las que tienen una mayor tasa de violencia. La literatura y la evidencia estadística revela que la etnicidad juega un rol importante en los casos de violencia y, por lo tanto, se usará como variable de control para entender como se configura la violencia contra la mujer dentro del ambito familiar.
 
 -   V131: Etnicidad
 
