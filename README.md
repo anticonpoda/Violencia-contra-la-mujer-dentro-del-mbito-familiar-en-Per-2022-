@@ -6,6 +6,11 @@ editor_options:
   markdown: 
     wrap: 72
 ---
+# Tema de investigación
+
+En un sentido teórico, esta investigación busca reconocer distintos rasgos a nivel individual que pueden determinar el surgimiento de casos de violencia contra la mujer dentro del ámbito familiar. La exposición a una situación de violencia puede verse impulsada por diversos aspectos dentro de la identidad personal como la etnia, sexo, religión u otros, lo que explicarían a su vez el grado de vulnerabilidad para convertirse en víctimas.
+En un sentido práctico, al reconocer predictores que permitan estimar la probabilidad de que ocurra un caso de violencia contra la mujer dentro del ambito familiar, esta investigación busca aportar en el diseño de políticas públicas que tengan un carácter preventivo respecto a este tipo de violencia. A partir de rangos de edad o nivel educativo se pueden elaborar políticas diferenciadas que se adapten a la realidad de las mujeres dentro de un ámbito familiar para prevenir que sucedan casos de violencia por primera vez o que ocurra una reincidencia.
+
 
 # Diccionario de datos
 
@@ -39,14 +44,11 @@ Esta variable se encuentra distribuida en el Módulo 1637 (REC84DV) que está or
     -   1 = Sí experimentó algún resultado adverso causado por el
         esposo/compañero
 
-Las variables dependientes en este estudio son dicotómicas, lo que significa que cada una de ellas tiene dos posibles valores: sí y no. Posteriormente, estas variables serán combinadas en una única variable general dicotómica que representará la presencia o ausencia de cualquier tipo de violencia contra la mujer. 
+Las variables dependientes en este estudio son dicotómicas, lo que significa que cada una de ellas tiene dos posibles valores: sí y no. Posteriormente, estas variables serán combinadas en una única variable general dicotómica que representará la presencia o ausencia de cualquier tipo de violencia contra la mujer en el ámbito familiar. 
 
 ## Variables independientes:
 
-Se encuentran en el Modulo 1631(REC0111 y REC91) de Mortalidad, Embarazo y Familia. De
-esta data se van a recopilar datos básicos que se usarán como variables
-predictoras de la violencia contra la mujer. Incluye las siguientes
-variables:
+Se encuentran en el Modulo 1631(REC0111 y REC91) de Mortalidad, Embarazo y Familia. De esta data se van a recopilar datos básicos que se usarán como variables predictoras de la violencia contra la mujere en el ambito familiar. Incluye las siguientes variables:
 
 -   V012: Edad
 
@@ -150,8 +152,7 @@ Más adelante, esta variable será recodificada en una variable dicotómica, don
 
 Posteriormente, para simplificar el análisis y agrupar los datos, esta variable será recodificada en una variable dicotómica donde 1 sera igual a aquellas mujeres cuya lengua materna sea el español, y 0 a aquellas que tengan otra lengua materna distinta al español.
 
-
-Todos estos datos se utilizarán para analizar y predecir la violencia contra la mujer, considerando factores como la ubicación geográfica, nivel educativo, composición del hogar, así como el índice de riqueza del hogar.
+Todos estos datos se utilizarán para analizar y predecir la violencia contra la mujer en el ámbito familiar, considerando factores como la ubicación geográfica, nivel educativo, composición del hogar, así como el índice de riqueza del hogar.
 
 ## Variable de control
 
@@ -185,7 +186,7 @@ Todos estos datos se utilizarán para analizar y predecir la violencia contra la
 
 
 
-Variable dependiente
+Configuracion de la variable dependiente
 
 ```{r}
 datosdep <- read.csv("REC84DVD.csv", sep = ";")
@@ -195,7 +196,7 @@ datosdep <- read.csv("REC84DVD.csv", sep = ";")
 vardep <- subset(datosdep, select = c("D104", "D108", "D111", "CASEID"))
 ```
 
-Variables independientes
+Configuración de las variables independientes
 
 ```{r}
 datosind <- read.csv("REC0111VI.csv", sep = ";")
