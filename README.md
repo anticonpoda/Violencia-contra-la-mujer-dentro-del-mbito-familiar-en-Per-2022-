@@ -9,6 +9,7 @@ editor_options:
 # Tema de investigación
 
 En un sentido teórico, esta investigación busca reconocer distintos rasgos a nivel individual que pueden determinar el surgimiento de casos de violencia contra la mujer dentro del ámbito familiar. La exposición a una situación de violencia puede verse impulsada por diversos aspectos dentro de la identidad personal como la etnia, sexo, religión u otros, lo que explicarían a su vez el grado de vulnerabilidad para convertirse en víctimas.
+
 En un sentido práctico, al reconocer predictores que permitan estimar la probabilidad de que ocurra un caso de violencia contra la mujer dentro del ambito familiar, esta investigación busca aportar en el diseño de políticas públicas que tengan un carácter preventivo respecto a este tipo de violencia. A partir de rangos de edad o nivel educativo se pueden elaborar políticas diferenciadas que se adapten a la realidad de las mujeres dentro de un ámbito familiar para prevenir que sucedan casos de violencia por primera vez o que ocurra una reincidencia.
 
 
