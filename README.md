@@ -156,10 +156,6 @@ Todos estos datos se utilizarán para analizar y predecir la violencia contra la
 
 ## Variable de control
 
-En una nota técnica elaborada por el Banco Interamericano de Desarrollo, a partir de los datos recogidos en las Encuesta Demográfica y de Salud Familiar, se concluye que las mujeres que hablan castellano luego de un proceso de aprendizaje y que hablaban quechua o aymara en su infancia son las que tienen una mayor tasa de violencia. La literatura y la evidencia estadística revela que la etnicidad juega un rol importante en los casos de violencia y, por lo tanto, se usará como variable de control para entender como se configura la violencia contra la mujer dentro del ambito familiar.
-
-https://observatorioviolencia.regionlalibertad.gob.pe/wp-content/uploads/2021/04/Prevalencia-de-la-violencia-contra-la-mujer-entre-diferentes-grupos-etnicos-en-Peru.pdf
-
 -   V131: Etnicidad
 
     Carácter: Indica el grupo étnico al que pertenece la mujer.
