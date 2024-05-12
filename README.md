@@ -156,6 +156,8 @@ Todos estos datos se utilizarán para analizar y predecir la violencia contra la
 
 ## Variable de control
 
+Existe una amplia literatura que sustenta el gran impacto de la etnicidad dentro de los casos de violencia contra la mujer. Por lo tanto, resulta adecuado utilizarla como variable de control en aras de poder apreciar en mayor medida el efecto de otras variables sobre los casos de violencia contra la mujer en el ámbito familiar.
+
 -   V131: Etnicidad
 
     Carácter: Indica el grupo étnico al que pertenece la mujer.
