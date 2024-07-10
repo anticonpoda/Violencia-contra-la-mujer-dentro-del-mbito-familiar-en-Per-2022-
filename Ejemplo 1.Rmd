@@ -1,0 +1,432 @@
+---
+title: "Violencia contra la mujer dentro del ámbito familiar"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(ggplot2)
+library(dplyr)
+```
+
+
+# Exploración de datos
+Column {data-width=500}
+------------------------
+
+### Tema de investigación
+
+Esta investigación busca reconocer distintos rasgos a nivel individual que pueden determinar el surgimiento de casos de violencia contra la mujer dentro del ámbito familiar. La exposición a una situación de violencia puede verse impulsada por diversos aspectos dentro de la identidad personal como la etnia, sexo, religión u otros, lo que explicarían a su vez el grado de vulnerabilidad para convertirse en víctimas.
+
+
+```{r}
+library(readr)
+data <- read_csv("dataviolenciacontralamujer.csv")
+data <- data[complete.cases(data), ]
+```
+
+```{r}
+data$V155<-factor(data$V155,
+                                levels=0:4,
+                                labels=c("no_leer", "leer_palabras", "leer_frases","no_tarjeta","ciega"))
+
+
+data <- data |>
+  mutate(V024 = recode(V024, `1` = "AMAZONAS", 
+                       `2` = "ANCASH",
+                       `3` = "APURIMAC",
+                       `4` = "AREQUIPA",
+                       `5` = "AYACUCHO",
+                       `6` = "CAJAMARCA",
+                       `7` = "CALLAO",
+                       `8` = "CUSCO",
+                       `9` = "HUANCAVELICA",
+                       `10` = "HUANUCO",
+                       `11` = "ICA",
+                       `12` = "JUNIN",
+                       `13` = "LA_LIBERTAD",
+                       `14` = "LAMBAYEQUE",
+                       `15` = "LIMA",
+                       `16` = "LORETO",
+                       `17` = "MADRE_DE_DIOS",
+                       `18` = "MOQUEGUA",
+                       `19` = "PASCO",
+                       `20` = "PIURA",
+                       `21` = "PUNO",
+                       `22` = "SAN_MARTIN",
+                       `23` = "TACNA",
+                       `24` = "TUMBES",
+                       `25` = "UCAYALI",
+                       ))
+```
+
+```{r}
+data$lengua <- ifelse(data$S119 == 10, 2, 1)
+data$lengua<-factor(data$lengua,
+                                levels=1:2,
+                                labels=c("no_español", "español"))
+```
+
+
+
+### Estructura del dataframe
+
+```{r}
+str(data)
+```
+
+
+
+
+Column {data-width=700}
+---
+
+### Head dataframe
+
+```{r}
+head(data, 40)
+```
+
+
+### Configuración de la variable dependiente
+
+```{r echo=TRUE}
+data$violencia <- ifelse(data$D104 == 0 & data$D108 == 0 & data$D111 == 0, 1, 2)
+
+# Sumar las variables de violencia emocional, sexual y cualquier resultado adverso de violencia
+data$violencia_general <- data$D104 + data$D108 + data$D111
+
+# Establecer un umbral para determinar la presencia de violencia general (por ejemplo, si la suma es mayor que 0)
+data$violencia_general <- ifelse(data$violencia_general > 0, 1, 0)
+
+data$violencia<-factor(data$violencia,
+                                levels=1:2,
+                                labels=c("No","Sí"))
+
+```
+
+
+
+# Descripción y configuración de variables
+
+Column {data-widt=700}
+---
+
+### Violencia
+
+Variable que determina si en un caso hubo, al menos, un tipo de violencia contra de la mujer registrado. Los tipo de violencia considerados son: física, psicológica y sexual.
+
+```{r}
+table(data$violencia)
+
+```
+
+### Nivel Educativo
+
+Registra el nivel educativo de la persona entrevistada. Existen 5 niveles: Sin educación, primaria incompleta, primaria completa, secundaria incompleta, secundaria completa y educación superior.
+
+```{r}
+data$V149<-factor(data$V149,
+                                levels=0:5,
+                                labels=c("sin_educacion", "prim_inc", "prim_com","sec_inc","sec_com","sup"))
+```
+
+```{r}
+table(data$V149)
+```
+
+
+### Nivel socioeconómico
+
+```{r}
+data$V190<-factor(data$V190,
+                                levels=1:5,
+                                labels=c("pobre_ext", "pobre", "medio","rico","rico_ext"))
+```
+Registra el nivel de riqueza de la persona entrevistada. Existen 5 niveles: Pobreza extrema, pobreza, riqueza moderada, rico, extremadamente rico.
+
+```{r}
+table(data$V190)
+```
+
+### Ámbito
+
+Registra el ambito de residencia de la persona entrevista. Existen dos niveles: Urbano y rural.
+
+```{r}
+data$V025<-factor(data$V025,
+                                levels=1:2,
+                                labels=c("urbano", "rural"))
+```
+
+```{r}
+table(data$V025)
+```
+
+
+
+Column {data-width=500}
+---
+
+
+
+### Presencia de violencia contra la mujer en el ámbito familiar
+
+```{r}
+ggplot(data, aes(x = violencia, fill = violencia)) +
+  geom_bar() +
+  labs(title = "Presencia de violencia contra la mujer en el ámbito familiar",
+       x = "Violencia",
+       y = "Número de casos") +
+  scale_fill_manual(values = c("No" = "red", "Sí" = "blue"),
+                    name = "Violencia contra la mujer",
+                    labels = c("No", "Sí")) +
+  theme_minimal()
+```
+
+### Proporción de casos donde hubo y no hubo violencia en base al ámbito 
+
+
+```{r}
+tabla_simple<-table(data$violencia, data$V025)
+tabla_simple
+```
+```{r}
+tabla_simple |> 
+  prop.table(2)|>
+  addmargins(1)
+```
+
+```{r}
+tabla_simple_p<-tabla_simple |> 
+                  prop.table(2) |> 
+                  round(5)
+df <- as.data.frame(tabla_simple_p)
+```
+
+```{r}
+df |> 
+  ggplot()+
+  aes(x=Var2, y=Freq, fill=Var1)+
+  geom_bar(position = "dodge", stat="identity") +
+  geom_text(aes(label=Freq), 
+            position = position_dodge(width = 0.9), vjust=0, size = 3)+
+  labs(x="Ámbito", y="Proporción", fill="Casos de violencia")
+```
+
+
+
+
+Column {data-width=500}
+---
+
+### Distribución de casos que registran al menos un tipo de violencia contra la mujer dentro del ámbito familiar
+
+```{r}
+data_violencia1<- subset(data, violencia == "Sí")
+```
+
+```{r}
+# Histograma de la edad de las mujeres
+
+
+hist(data_violencia1$V012, breaks = 20, col = "skyblue", border = "white",
+     main = "Histograma de Edad de Mujeres con Violencia",
+     xlab = "Edad",
+     ylab = "Frecuencia")
+```
+
+
+### Distribución de casos que registran al menos un tipo de violencia contra la mujer a nivel nacional por departamentos
+
+```{r}
+# Gráfico de barras para la región de residencia
+ggplot(data_violencia1, aes(x = V024)) +
+  geom_bar(fill = "skyblue", color = "black") +
+  labs(title = "Distribución por región de residencia",
+       x = "Región",
+       y = "Número de casos") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotar etiquetas del eje x si es necesario
+```
+
+```{r}
+table(data_violencia1$V024)
+```
+
+
+
+# Modelo
+
+
+Column {data-widt=500}
+---
+
+### Modelo de regresión logística binaria
+
+```{r}
+h2=formula(violencia~V012+V025+lengua+V149+V190+V155+V136)
+
+rlog2=glm(h2, data=data,family = binomial)
+modelrl2=list('Sufrir violencia (I)'=rlog2)
+
+#f <- function(x) format(x, digits = 4, scientific = FALSE)
+library(modelsummary)
+modelsummary(modelrl2,
+             title = "Regresión Logística",
+             stars = TRUE,
+             output = "kableExtra")
+
+```
+
+
+### Consideraciones
+
+A partir de los sectores socioeconómicos se determina que el hecho de ser una mujer con alto poder adquisitivo disminuye en promedio en un factor de -0.42 al odds ratio de sufrir algún tipo de violencia dentro del ámbito familiar a diferencia de otros sectores con otro nivel de poder adquisitivo.
+
+Que una mujer tenga como primera lengua español disminuye en promedio en un factor de -0.19 al odds ratio de sufrir algún tipo de violencia dentro del ámbito familiar.
+
+Column {data-widt=500}
+---
+
+### Modelo de regresión logística binaria con coeficientes exponenciados
+
+
+```{r}
+formatoNumero = function(x) format(x, digits = 4, scientific = FALSE)
+f <- function(x) format(x, digits = 4, scientific = FALSE)
+modelsummary(modelrl2,
+             fmt=formatoNumero,
+             exponentiate = T, 
+             statistic = 'conf.int',
+             title = "Comparando Regresión Logísticas (Coeficientes Exponenciados)",
+             stars = TRUE,
+             gof_map = c("nobs","aic","bic","rmse","logLik"), #comparar
+             gof_omit = c("F"),
+             output = "kableExtra")
+```
+
+### Consideraciones
+
+De acuerdo a los coeficientes exponenciados se puede deducir que el odds ratio  de sufrir algún tipo de violencia se eleva en promedio 3% cada vez que la edad de la mujer aumenta en uno.
+
+```{r}
+edad=coef(rlog2)["V012"]
+exp(edad)
+```
+
+De acuerdo a los coeficientes exponenciados se puede deducir que el odds ratio  de sufrir algún tipo de violencia disminuye en promedio 4% cada vez que el número de personas dentro de la vivienda aumenta en uno.
+
+```{r}
+personashogar=coef(rlog2)["V136"]
+exp(personashogar)
+```
+
+
+
+
+
+# Resultados y Hallazgos
+
+Column {data-widt=500}
+---
+
+```{r include=FALSE}
+#library(margins)
+
+margins(rlog2)
+```
+
+### Efectos Marginales promedio
+
+
+
+```{r}
+library(knitr)
+marginalsData=summary(margins(rlog2))
+marginalsData%>% kable(caption = "Efectos Marginales Promedio- Modelo I") %>%kableExtra::kable_styling(full_width = T)
+```
+### Efectos marginales promedios
+
+```{r}
+library(ggplot2)
+base= ggplot(marginalsData,aes(x=factor, y=AME)) + geom_point()
+base +  geom_errorbar(aes(ymin=lower, ymax=upper)) +  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+
+Column {data-widt=500}
+---
+### Interpretación de los resultados
+
+Lengua (español): El AME de esta variable es -0.0421482, lo que indica que, en promedio, las mujeres cuya lengua materna no es el español tienen una mayor probabilidad de experimentar violencia en comparación con aquellas cuya lengua materna es el español. Este efecto es altamente significativo porque tiene un p valor igual a 0.0000001
+
+
+Edad: El AME es 0.0061582, esto significa que, por cada año adicional de edad, la probabilidad de que una mujer sea victima de violencia aumenta en 0.0061582 unidades. Este efecto también es altamente significativo con un p valor igual a 0.0000000
+
+Ámbito rural: El AME es -0.0567154, indicando que vivir en áreas rurales está asociado, en promedio, con una menor probabilidad de que una mujer sea victima de violencia en comparación con vivir en áreas urbanas. Este efecto es altamente significativo con p = 0.0000000
+
+Número de miembros en la familia: El AME es -0.0062879, lo que sugiere que por cada miembro adicional en el hogar, la probabilidad de que una mujer sea violentada disminuye en 0.0062879 unidades. Este efecto es significativo a un nivel de p = 0.0013810.
+
+Las diferentes categorias del último nivel educativo alcanzado por la mujer no son estadísticamente significativas porque  el p valor es mayor que 0.05 en todos los casos, lo que indica que estos niveles educativos no tienen un efecto significativo en la variable dependiente según este modelo.
+
+Las diferentes categorias de la variable alfabetización no son estadísticamente significativos.
+
+Con respecto a la variable del nivel de riqueza del hogar al que pertenece la mujer, los efectos marginales sugieren que los niveles más altos de riqueza, es decir rico y rico extremo, están asociados con una menor probabilidad de experimentar violencia. 
+
+
+
+
+
+
+```{r}
+install.packages("FactoMineR")
+install.packages("factoextra")
+library(FactoMineR)
+library(factoextra)
+
+# Supongamos que ya tienes cargado tu dataframe 'data'
+# Seleccionar las columnas "V025", "V149", "V190" y "lengua"
+subset_data <- data[, c("V025", "V149", "V190", "lengua")]
+
+# Realizar el Análisis de Correspondencias Múltiples
+resultado_mca <- MCA(subset_data, graph = FALSE)
+
+
+# Resumen de los resultados
+summary(resultado_mca)
+
+# Visualizar el mapa de individuos
+fviz_mca_ind(resultado_mca, 
+             label = "none", # No mostrar etiquetas de individuos
+             habillage = "lengua", # Variable para colorear los individuos
+             addEllipses = TRUE, ellipse.level = 0.95)
+
+# Visualizar el mapa de variables
+fviz_mca_var(resultado_mca, 
+             repel = TRUE) # Evitar la superposición de etiquetas
+
+```
+
+```{r}
+# Obtener la contribución de las variables a las dimensiones
+var <- get_mca_var(resultado_mca)
+
+# Visualizar la contribución de las variables a la Dimensión 1
+fviz_contrib(resultado_mca, choice = "var", axes = 1)
+
+# Visualizar la contribución de las variables a la Dimensión 2
+fviz_contrib(resultado_mca, choice = "var", axes = 2)
+
+# Visualizar el mapa de variables con contribuciones
+fviz_mca_var(resultado_mca, col.var = "contrib", 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             repel = TRUE)
+
+```
+
+
+
